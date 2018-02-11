@@ -11,7 +11,7 @@ using CppAD::AD;
 
 const int N=NUM_STEPS;
 const double dt=DT;
-const double Lf = 2.67;
+const double Lf = LF;
 const double v_ref=V_REF;
 
 int x_start=0;
@@ -38,8 +38,8 @@ int a_start=delta_start-1+N;
 class FG_eval {
  public:
   // Fitted polynomial coefficients
-  Eigen::VectorXd coeffs;
-  FG_eval(Eigen::VectorXd coeffs) { this->coeffs = coeffs; }
+  Eigen::VectorXd wp_poly;
+  FG_eval(Eigen::VectorXd wp_poly) { this->wp_poly = wp_poly; }
 
   typedef CPPAD_TESTVECTOR(AD<double>) ADvector;
   void operator()(ADvector& fg, const ADvector& vars) {
@@ -98,12 +98,12 @@ class FG_eval {
       AD<double> delta0 = vars[delta_start + t - 1];
       AD<double> a0 = vars[a_start + t - 1];
       AD<double> f0 = 0.0;
-      for (int i=0; i<coeffs.size(); i++) {
-          f0 += coeffs[i] * CppAD::pow(x0, i);
+      for (int i=0; i<wp_poly.size(); i++) {
+          f0 += wp_poly[i] * CppAD::pow(x0, i);
       }
       AD<double> psides0 = 0.0;
-      for (int i = 1; i < coeffs.size(); i++) {
-      psides0 += i*coeffs[i] * CppAD::pow(x0, i-1); // f'(x0)
+      for (int i = 1; i < wp_poly.size(); i++) {
+      psides0 += i*wp_poly[i] * CppAD::pow(x0, i-1); // f'(x0)
       }
       psides0 = CppAD::atan(psides0);
 

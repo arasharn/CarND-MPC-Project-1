@@ -6,5 +6,5 @@ CXX_FLAGS = -Wall   -std=c++11 -O3
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/usr/local/include -I//Users/parham.shahidi/Documents/Udacity/CarND/CarND-MPC-Project/src/Eigen-3.3 -I/usr/local/opt/openssl/include 
+CXX_INCLUDES = -I/usr/local/include -I/Users/parham.shahidi/Documents/Udacity/CarND/CarND-MPC-Project/src/Eigen-3.3 -I/usr/local/opt/openssl/include 
 

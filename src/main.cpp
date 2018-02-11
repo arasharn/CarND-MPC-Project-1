@@ -126,7 +126,7 @@ int main() {
 
           //build a vehicle model to predict state at the current time + delay
           const double dt=0.1;
-          const double Lf=2.67;
+          const double Lf=LF;
           double px_act=px_conv+v*dt;
           double py_act=py_conv;
           double psi_act=psi_conv-v*steering_angle*dt/Lf;
