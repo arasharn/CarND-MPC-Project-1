@@ -100,6 +100,7 @@ int main() {
           *
           */
 
+
           // first we convert the waypoints to the vehicles coordinate system
           int N = ptsx.size();
           Eigen::VectorXd ptsx_conv(N);
@@ -109,7 +110,7 @@ int main() {
             double dx = ptsx[i]-px;
             double dy = ptsy[i]-py;
             ptsx_conv[i] = dx * cos(-psi)-dy*sin(-psi);
-            ptsy_conv[i] = dx * cos(-psi)+dy*sin(-psi);
+            ptsy_conv[i] = dy * cos(-psi)+dx*sin(-psi);
           }
 
           //next, we fit a polynomial to the converted waypoints
