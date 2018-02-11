@@ -65,7 +65,7 @@ The objective of the controller is to minimize a cost function that depends on d
 * Sum of square of actuator values a and delta to penalize large actuator actions.
 * Sum of square values of the difference between two consecutive actuator values to penalize sharp changes.
 
-I used weight parameters to prioritize the importance of each factor in the cost function. The appropriate weight values were obtained by the try-and-error method. It was noticed that the weights corresponding to the steering angle input and its rate have the most significant impact on the performance of the system and choosing large values for these two weights (W_DELTA and W_DDELTA) helps improving the stability of the car and avoiding the erratic and sudden steering behavior. Using the following weight values, a smooth and safe behavior can be obtained.
+I used the weight parameters to prioritize the importance of each factor in the cost function. The best weight values were obtained through trial and error. I noticed that the weights corresponding to the steering angle input and its rate have the most significant impact on the performance of the system. Large values for these two weights (W_DELTA and W_DDELTA) help improving the stability of the car and avoiding the erratic and sudden steering behavior. The following values were best:
 
 #define W_CTE 2
 #define W_EPSI 1
@@ -77,7 +77,7 @@ I used weight parameters to prioritize the importance of each factor in the cost
 
 ## Timestep Length and Elapsed Duration (N & dt):
 
-The parameters N(the number of points) and dt define the prediction horizon. Choosing a long prediction horizon can theoretically improve the prediction; but in practice, it increases the computational complexity. With too many points, the controller becomes slower and can become unstable. After some try and error and experimenting different values, I found that the car behaves well with N = 10 and dt = 0.1 which corresponds to a 1-second time horizon.
+The number N and dt define the prediction horizon. Choosing a long prediction horizon can theoretically improve the prediction. In practice, it increases the computational complexity. With too many points, the controller becomes slower and can become unstable. After experimenting with different values, I found that the car behaves well with N = 10 and dt = 0.1 which corresponds to a 1-second time horizon.
 
 
 
